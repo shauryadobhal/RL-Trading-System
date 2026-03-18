@@ -1,0 +1,7 @@
+# Ignore everything in this directory (to protect proprietary code)
+*
+
+# Except for the documentation and gitignore itself
+!.gitignore
+!README.md
+!assets/
