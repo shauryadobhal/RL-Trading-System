@@ -47,14 +47,30 @@ ADRLTS Root
 │   ├── dqn_agent.py        # Double DQN implementation
 │   └── __init__.py         # Initialization module
 ├── data/                   # Financial time-series data storage
+│   ├── download.py
+│   └── preprocess.py
 ├── env/                    # Reinforcement Learning environments
+│   ├── trading_env.py
+│   └── __init__.py
 ├── experiments/            # Hyperparameter configs and training results
 ├── features/               # Technical indicator and scaler pipelines
+│   ├── indicators.py
+│   └── __init__.py
 ├── portfolio/              # Trade simulation and tracking logic
+│   ├── portfolio_runner.py
+│   └── __init__.py
 ├── risk/                   # Dynamic position sizing & drawdown limits
+│   ├── capital_guard.py
+│   └── __init__.py
 ├── training/               # Training loop and episodic validation
+│   ├── evaluate_dqn_many.py
+│   ├── evaluate_portfolio.py
+│   ├── train_dqn_many.py
+│   └── __init__.py
+├── paper_trade.py          # Trade Execution API
 ├── paper_trade_daily.py    # Daily interval validation
-└── paper_trade_walk.py     # Continuous walk-forward validation
+├── paper_trade_walk.py     # Continuous walk-forward validation
+└── validate_data.py        # Data Integrity Validation
 ```
 
 ## 🛠️ Technology Stack
