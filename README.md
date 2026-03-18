@@ -17,7 +17,7 @@ The platform orchestrates everything from robust financial data ingestion and fe
 
 *   **📈 Automated Data Processing:** Seamless transformation of raw historical market data into normalized, stationary state-space vectors.
 *   **🛡️ Robust Risk Management:** Built-in dynamic position sizing and hard drawdown limits to ensure algorithmic decisions respect strict market constraints.
-*   **🧠 Deep Reinforcement Learning:** Utilizes a highly stable Double Deep Q-Network (Double DQN) with mechanisms like LayerNorm and Dropout to prevent catastrophic overfitting to historical bull markets.
+*   **🧠 Deep Reinforcement Learning:** Utilizes a highly stable Double Deep Q-Network (Double DQN) to prevent catastrophic overfitting to historical bull markets.
 *   **🔄 Custom Trading Environment:** A proprietary OpenAI Gym-style environment simulating real-world mechanics like transaction costs, order slippage, and liquidity.
 *   **🧪 Algorithmic Validation:** Walk-forward validation and paper trading infrastructure designed to prove out-of-sample expected value before live deployment.
 
