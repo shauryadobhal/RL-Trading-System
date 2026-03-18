@@ -81,7 +81,7 @@ ADRLTS Root
 | **Deep Learning** | PyTorch (`torch`, `torch.nn`) |
 | **Data Processing** | NumPy, Pandas |
 | **Algorithm** | Reinforcement Learning (Double DQN) |
-| **Environment** | Custom OpenAI Gym Paradigms |
+| **Environment** | Custom-Built Reinforcement Learning Trading Environment |
 | **Execution** | Windows PowerShell / Terminal Automation |
 
 ## 🚀 Usage (Architectural Concept)
