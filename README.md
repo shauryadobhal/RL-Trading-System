@@ -1,50 +1,79 @@
-# 🤖 Autonomous Deep Reinforcement Learning Trading System
+# 🤖 Autonomous Deep Reinforcement Learning Trading System (ADRLTS)
 
-This repository serves as a portfolio showcase for an autonomous, AI-driven trading system powered by Deep Reinforcement Learning (DRL). It acts as an autonomous hedge fund analyst, capable of reasoning about market conditions, formulating strategies, and executing trades with strict risk management.
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
 
-> **Note**: This is a public showcase repository. The proprietary source code, dataset processing pipelines, and trained model weights (`.pt` files) are kept in a separate, secure private repository to protect the intellectual property.
+> **Disclaimer:** This repository serves as a **public architectural overview and portfolio demonstration**. The source code logic in `.py` files has been intentionally obfuscated (or omitted) to protect proprietary intellectual property.
 
----
+## 🔬 Overview
+
+**ADRLTS** is a sophisticated, highly scalable Python-based platform designed for autonomous algorithmic trading. It streamlines the complex process of quantitative strategy formulation by evaluating non-stationary financial time-series data using **Deep Reinforcement Learning (DRL)**. 
+
+The platform orchestrates everything from robust financial data ingestion and feature engineering to complex model training (Double DQN) and backtesting, acting as an autonomous hedge fund analyst capable of executing strictly risk-managed trades.
+
+## ✨ Key Features
+
+*   **📈 Automated Data Processing:** Seamless transformation of raw historical market data into normalized, stationary state-space vectors.
+*   **🛡️ Robust Risk Management:** Built-in dynamic position sizing and hard drawdown limits to ensure algorithmic decisions respect strict market constraints.
+*   **🧠 Deep Reinforcement Learning:** Utilizes a highly stable Double Deep Q-Network (Double DQN) with mechanisms like LayerNorm and Dropout to prevent catastrophic overfitting to historical bull markets.
+*   **🔄 Custom Trading Environment:** A proprietary OpenAI Gym-style environment simulating real-world mechanics like transaction costs, order slippage, and liquidity.
+*   **🧪 Algorithmic Validation:** Walk-forward validation and paper trading infrastructure designed to prove out-of-sample expected value before live deployment.
 
 ## 🏗️ System Architecture
 
-The core of the decision-making engine is built upon a **Double Deep Q-Network (Double DQN)** constructed using PyTorch. The architecture is designed to handle non-stationary financial time-series data while aggressively mitigating the risk of catastrophic overfitting.
+```mermaid
+graph TD
+    A[Financial Data Sources] --> B(Feature Engineering & Processing)
+    B --> C{Custom Trading Environment}
+    C --> D(State Space Representation)
+    D --> E[Double DQN Agent]
+    E --> F(Action & Q-Value Output)
+    F --> G[Risk Management Layer]
+    G --> H(Portfolio Allocation)
+    H --> C
+    E --> I[(Experience Replay Buffer)]
+    I --> E
+```
 
-### 🧠 Core Agent Engine (`DQNAgent`)
-- **Framework:** PyTorch (`torch.nn`)
-- **Algorithm:** Double DQN (mitigates the overestimation bias inherent in standard Q-Learning).
-- **Network Topology (`QNet`):** 
-  - Multi-layer perceptron (MLP) architecture.
-  - Integration of `LayerNorm` and `Dropout` (0.2) specifically engineered to prevent the model from memorizing specific historical market regimes (e.g., the pre-2019 bull market).
-- **Optimization:** Adam Optimizer with Smooth L1 Loss (Huber) and Gradient Norm Clipping.
-- **Exploration Strategy:** $\epsilon$-greedy exploration with linear decay over extensive environmental steps.
+## 📁 Project Structure
 
-### 🔄 Memory & Replay
-- **Experience Replay:** A high-capacity `ReplayBuffer` (up to 200,000 transitions) breaks the temporal correlation of sequential financial data.
-- **Target Network:** Separate target network updated periodically to stabilize the temporal difference (TD) targets during Q-value updates.
+The project is structured following enterprise-level software engineering principles to ensure modularity, scalability, and maintainability.
+
+```text
+ADRLTS Root
+├── agents/                 # Reinforcement Learning logic
+│   ├── dqn_agent.py        # Double DQN implementation
+│   └── __init__.py         # Initialization module
+├── data/                   # Financial time-series data storage
+├── env/                    # Reinforcement Learning environments
+├── experiments/            # Hyperparameter configs and training results
+├── features/               # Technical indicator and scaler pipelines
+├── portfolio/              # Trade simulation and tracking logic
+├── risk/                   # Dynamic position sizing & drawdown limits
+├── training/               # Training loop and episodic validation
+├── paper_trade_daily.py    # Daily interval validation
+└── paper_trade_walk.py     # Continuous walk-forward validation
+```
+
+## 🛠️ Technology Stack
+
+| Domain | Technologies Used |
+| :--- | :--- |
+| **Language** | Python 3.11+ |
+| **Deep Learning** | PyTorch (`torch`, `torch.nn`) |
+| **Data Processing** | NumPy, Pandas |
+| **Algorithm** | Reinforcement Learning (Double DQN) |
+| **Environment** | Custom OpenAI Gym Paradigms |
+| **Execution** | Windows PowerShell / Terminal Automation |
+
+## 🚀 Usage (Architectural Concept)
+
+The platform is designed to autonomously adapt to shifting market conditions. A typical workflow involves:
+1.  **Ingestion:** Running feature pipelines to construct environment states.
+2.  **Training:** Executing `-train` scripts via the `Double DQN` agent using Experience Replay.
+3.  **Validation:** Running `paper_trade_walk.py` to evaluate model endurance and Risk-Adjusted Returns (Sharpe/Sortino proxies).
 
 ---
-
-## 📊 Modules & Pipeline
-
-While the code is private, the system is architected into several robust, scalable modules:
-
-1. **Feature Engineering (`/features`):** Processing raw market data into stationary, normalized state-space vectors suitable for neural network ingestion.
-2. **Custom Trading Environment (`/env`):** A custom OpenAI Gym-style environment that accurately simulates market mechanics, including transaction costs, slippage, and liquidity constraints.
-3. **Risk Management (`/risk`):** Dynamic position sizing and hard stop-loss mechanisms ensuring the agent's actions never exceed predefined drawdown limits.
-4. **Portfolio Management (`/portfolio`):** Tracking historical allocations, cash balances, and overall portfolio value across time.
-5. **Execution (`/scripts`):** Walk-forward validation (`paper_trade_walk.py`) and daily paper trading modes (`paper_trade_daily.py`).
-
----
-
-## 🎯 Objective & Metrics
-
-The fundamental objective of this agent is to maximize risk-adjusted returns rather than absolute cumulative wealth. The reward function naturally incentivizes consistently positive expected value (EV) decisions while penalizing high-variance actions. 
-
-**Target Performance Metrics:**
-- High Sharpe & Sortino Ratios
-- Minimized Maximum Drawdown (MDD)
-- Consistent Average Market Exposure
-
----
-*Developed by Shaurya Dobhal.*
+*Architected and Engineered by [Shaurya Dobhal](https://github.com/shauryadobhal)*
