@@ -9,7 +9,7 @@
 
 ## 🔬 Overview
 
-**ADRLTS** is a sophisticated, highly scalable Python-based platform designed for autonomous algorithmic trading. It streamlines the complex process of quantitative strategy formulation by evaluating non-stationary financial time-series data using **Deep Reinforcement Learning (DRL)**. 
+**ADRLTS** is a sophisticated, highly scalable Python-based platform designed for autonomous algorithmic trading. It streamlines the complex process of quantitative strategy formulation by evaluating non-stationary financial time-series data using ** Reinforcement Learning (RL)**. 
 
 The platform orchestrates everything from robust financial data ingestion and feature engineering to complex model training (Double DQN) and backtesting, acting as an autonomous hedge fund analyst capable of executing strictly risk-managed trades.
 
