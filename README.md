@@ -1,4 +1,4 @@
-# 🤖 Autonomous Deep Reinforcement Learning Trading System (ADRLTS)
+# 🤖 Autonomous Reinforcement Learning Trading System (ARLTS)
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
